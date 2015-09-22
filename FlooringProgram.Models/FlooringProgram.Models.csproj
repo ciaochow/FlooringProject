@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddOrderReceipt.cs" />
     <Compile Include="DisplayOrderReceipt.cs" />
     <Compile Include="IRepo.cs" />
     <Compile Include="Order.cs" />

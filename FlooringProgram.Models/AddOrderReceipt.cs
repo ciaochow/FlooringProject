@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace FlooringProgram.Models
 {
-    public interface IRepo
+    public class AddOrderReceipt
     {
-        List<Order> LoadOrders(string date);
-        void OverWriteFileWithOrder(List<Order> orders, string date);
+        public int Date { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

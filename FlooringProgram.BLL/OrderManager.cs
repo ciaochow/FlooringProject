@@ -60,5 +60,34 @@ namespace FlooringProgram.BLL
             }
             return response;
         }
+
+        public Response<AddOrderReceipt> AddOrder(Order order,string date)
+        {
+            var response = new Response<AddOrderReceipt>();
+            var repo = _repo;
+            var orders = repo.LoadOrders(date);
+            try
+            {
+                    
+                    var highAccountNum = orders.Select(a => a.orderNumber).Max();
+                    order.orderNumber = highAccountNum + 1;
+                    orders.Add(order);
+                    repo.OverWriteFileWithOrder(orders,date);
+                    response.Success = true;
+                    //sponse.Message = "";
+                    response.Data = new AddOrderReceipt();
+                    response.Data.Date = int.Parse(date);
+                    response.Data.Orders = orders;
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+            return response;
+
+        }
+
+        
     }
 }

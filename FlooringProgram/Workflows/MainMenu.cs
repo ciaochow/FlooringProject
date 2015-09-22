@@ -42,18 +42,18 @@ namespace FlooringProgram
                     var DisplayOrder = new DisplayOrderWorkflow();
                     DisplayOrder.Execute();
                     break;
-                //case "2":
-                //    var AddOrder = new AddOrderWorkflow();
-                //    AddOrder.Execute();
-                //    break;
-                //case "3":
-                //    var EditOrder = new EditOrderWorkflow();
-                //    EditOrder.Execute();
-                //    break;
-                //case "4":
-                //    var RemoveOrder = new RemoveOrderWorkflow();
-                //    RemoveOrder.Execute();
-                //    break;
+                case "2":
+                    var AddOrder = new AddOrderWorkflow();
+                    AddOrder.Execute();
+                    break;
+                    //case "3":
+                    //    var EditOrder = new EditOrderWorkflow();
+                    //    EditOrder.Execute();
+                    //    break;
+                    //case "4":
+                    //    var RemoveOrder = new RemoveOrderWorkflow();
+                    //    RemoveOrder.Execute();
+                    //    break;
             }
 
         }

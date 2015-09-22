@@ -29,5 +29,10 @@ namespace FlooringProgram.Data
             Orders.Add(order1);
             return Orders;
         }
+
+        public void OverWriteFileWithOrder(List<Order> orders, string date)
+        {
+            Console.WriteLine("Should do stuff here in future");
+        }
     }
 }
