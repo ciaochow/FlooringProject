@@ -10,7 +10,7 @@ namespace FlooringProgram.Data
     public class TestOrderRepo : IRepo
     {
 
-        public List<Order> LoadOrders()
+        public List<Order> LoadOrders(string date)
         {
             List<Order> Orders = new List<Order>();
             var order1 = new Order();

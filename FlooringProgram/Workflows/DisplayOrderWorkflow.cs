@@ -43,9 +43,10 @@ namespace FlooringProgram.Workflows
                     //Console.WriteLine(order.LaborCost);
                     //Console.WriteLine(order.Tax);
                     //Console.WriteLine(order.Total);
-                    Console.Write("\nPress any key to continue... ");
-                    Console.ReadKey();
+                    
                 }
+                Console.Write("\nPress any key to continue... ");
+                Console.ReadKey();
             }
             else
             {
@@ -54,20 +55,21 @@ namespace FlooringProgram.Workflows
                 Console.Write("\nPress any key to continue... ");
                 Console.ReadKey();
             }
+          
         }
 
-        private int GetDate()
+        private string GetDate()
         {
             do
             {
                 Console.Write("Enter date of orders to display (MMDDYYYY): ");
                 string input = Console.ReadLine();
                 int num;
+                var passThisString = input;
                 bool parsedinput = int.TryParse(input, out num);
                 if (parsedinput)
                 {
-                    num = int.Parse(input);
-                    return num;
+                    return passThisString;
                 }
             } while (true);
         }

@@ -21,21 +21,21 @@ namespace FlooringProgram.BLL
             if (mode == "Test")
             {
                 var repo = new TestOrderRepo();
-                repo.LoadOrders();
                 _repo = repo;
             }
             else
             {
-                //var repo = new 
+                var repo = new ProdOrderRepo();
+                _repo = repo;
             }
 
         }
 
-        public Response<DisplayOrderReceipt> DisplayOrders(int date)
+        public Response<DisplayOrderReceipt> DisplayOrders(string date)
         {
             var response = new Response<DisplayOrderReceipt>();
             var repo = _repo;
-            var orders = repo.LoadOrders();
+            var orders = repo.LoadOrders(date);
 
             try
             {
@@ -49,7 +49,7 @@ namespace FlooringProgram.BLL
                     response.Success = true;
                     //sponse.Message = "";
                     response.Data = new DisplayOrderReceipt();
-                    response.Data.Date = date;
+                    response.Data.Date = int.Parse(date);
                     response.Data.Orders = orders;
                 }
             }

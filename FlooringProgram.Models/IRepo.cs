@@ -8,6 +8,6 @@ namespace FlooringProgram.Models
 {
     public interface IRepo
     {
-        List<Order> LoadOrders();
+        List<Order> LoadOrders(string date);
     }
 }
