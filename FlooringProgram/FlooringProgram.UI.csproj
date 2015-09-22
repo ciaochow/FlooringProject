@@ -52,6 +52,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FlooringProgram.BLL\FlooringProgram.BLL.csproj">
+      <Project>{cc631787-200e-4f3e-8686-68f03524479b}</Project>
+      <Name>FlooringProgram.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FlooringProgram.Models\FlooringProgram.Models.csproj">
       <Project>{eaa989b4-e519-4227-8faf-fab20801e8a8}</Project>
       <Name>FlooringProgram.Models</Name>

@@ -12,7 +12,6 @@ namespace FlooringProgram
         {
             var menu = new MainMenu();
             menu.Execute();
-            Console.ReadLine();
         }
     }
 }

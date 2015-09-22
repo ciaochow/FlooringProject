@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CC631787-200E-4F3E-8686-68F03524479B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FlooringProgram.BLL</RootNamespace>
     <AssemblyName>FlooringProgram.BLL</AssemblyName>
@@ -32,8 +32,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,6 +54,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FlooringProgram.Data\FlooringProgram.Data.csproj">
+      <Project>{8ad1bdbd-15c3-4a27-85e7-9908d8abf90a}</Project>
+      <Name>FlooringProgram.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FlooringProgram.Models\FlooringProgram.Models.csproj">
       <Project>{eaa989b4-e519-4227-8faf-fab20801e8a8}</Project>
       <Name>FlooringProgram.Models</Name>
