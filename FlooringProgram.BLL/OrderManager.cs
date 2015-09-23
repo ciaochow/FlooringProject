@@ -65,10 +65,9 @@ namespace FlooringProgram.BLL
         {
             var response = new Response<AddOrderReceipt>();
             var repo = _repo;
-            var orders = repo.LoadOrders(date);
+            var orders = _repo.LoadOrders(date);
             try
             {
-                    
                     var highAccountNum = orders.Select(a => a.orderNumber).Max();
                     order.orderNumber = highAccountNum + 1;
                     orders.Add(order);
