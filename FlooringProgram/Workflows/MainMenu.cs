@@ -50,10 +50,10 @@ namespace FlooringProgram
                     var EditOrder = new EditOrderWorkflow();
                     EditOrder.Execute();
                     break;
-                    //case "4":
-                    //    var RemoveOrder = new RemoveOrderWorkflow();
-                    //    RemoveOrder.Execute();
-                    //    break;
+                case "4":
+                    var RemoveOrder = new RemoveOrderWorkflow();
+                    RemoveOrder.Execute();
+                    break;
             }
 
         }

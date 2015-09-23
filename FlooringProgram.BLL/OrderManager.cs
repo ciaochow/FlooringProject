@@ -28,7 +28,6 @@ namespace FlooringProgram.BLL
                 var repo = new ProdOrderRepo();
                 _repo = repo;
             }
-
         }
 
         public Response<DisplayOrderReceipt> DisplayOrders(string date)
@@ -36,7 +35,6 @@ namespace FlooringProgram.BLL
             var response = new Response<DisplayOrderReceipt>();
             var repo = _repo;
             var orders = repo.LoadOrders(date);
-
             try
             {
                 if (orders.Count == 0)
@@ -47,7 +45,6 @@ namespace FlooringProgram.BLL
                 else
                 {
                     response.Success = true;
-                    //sponse.Message = "";
                     response.Data = new DisplayOrderReceipt();
                     response.Data.Date = int.Parse(date);
                     response.Data.Orders = orders;
@@ -73,7 +70,6 @@ namespace FlooringProgram.BLL
                     orders.Add(order);
                     repo.OverWriteFileWithOrder(orders,date);
                     response.Success = true;
-                    //sponse.Message = "";
                     response.Data = new AddOrderReceipt();
                     response.Data.Date = int.Parse(date);
                     response.Data.Orders = orders;
@@ -84,7 +80,6 @@ namespace FlooringProgram.BLL
                 response.Message = ex.Message;
             }
             return response;
-
         }
 
         public Response<EditOrderReceipt> EditOrder(Order order, string date, int ordernum)
@@ -96,11 +91,8 @@ namespace FlooringProgram.BLL
             {
                 var filtered = orders.Where(a => a.orderNumber != ordernum).ToList();
                 filtered.Add(order);
-                //order.orderNumber = highAccountNum + 1;
-                //orders.Add(order);
                 repo.OverWriteFileWithOrder(filtered, date);
                 response.Success = true;
-                //sponse.Message = "";
                 response.Data = new EditOrderReceipt();
                 response.Data.Date = int.Parse(date);
                 response.Data.Orders = orders;
@@ -111,9 +103,28 @@ namespace FlooringProgram.BLL
                 response.Message = ex.Message;
             }
             return response;
-
         }
 
-
+        public Response<RemoveOrderReceipt> RemoveOrder(Order order, string date, int ordernum)
+        {
+            var response = new Response<RemoveOrderReceipt>();
+            var repo = _repo;
+            var orders = _repo.LoadOrders(date);
+            try
+            {
+                var filtered = orders.Where(a => a.orderNumber != ordernum).ToList();
+                repo.OverWriteFileWithOrder(filtered, date);
+                response.Success = true;
+                response.Data = new RemoveOrderReceipt();
+                response.Data.Date = int.Parse(date);
+                response.Data.Orders = orders;
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
     }
 }

@@ -15,11 +15,9 @@ namespace FlooringProgram.Data
         public List<Order> LoadOrders(string date)
         {
             List<Order> Orders = new List<Order>();
-
             string filename = "Orders_" + date + ".txt";
             var fileToRead = FilePath + filename;
-
-            try
+            if (File.Exists(fileToRead))
             {
                 var reader = File.ReadAllLines(fileToRead);
                 for (int i = 1; i < reader.Length; i++)
@@ -43,33 +41,23 @@ namespace FlooringProgram.Data
                     Orders.Add(order);
                 }
             }
-            catch (Exception)
+            else
             {
-                Console.WriteLine("Could not find file.");
+                var emptyorder = new Order();
+                Orders.Add(emptyorder);
+                Console.Write("There are no orders with that date.");
+                Console.ReadKey();
             }
             return Orders;
         }
 
-        //public void UpdateAccount(Account accountToUpdate)
-        //{
-        //    var accounts = GetAllAccounts();
-
-        //    var existingAccount = accounts.First(a => a.AccountNumber == accountToUpdate.AccountNumber);
-        //    existingAccount.FirstName = accountToUpdate.FirstName;
-        //    existingAccount.LastName = accountToUpdate.LastName;
-        //    existingAccount.Balance = accountToUpdate.Balance;
-
-        //    OverwriteFile(accounts);
-        //}
-
-        private void OverWriteFile(List<Order> orders,string date)
+        private void OverWriteFile(List<Order> orders, string date)
         {
             string filename = "Orders_" + date + ".txt";
             var fileToRead = FilePath + filename;
             using (var writer = File.CreateText(fileToRead))
             {
                 writer.WriteLine("OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
-
                 foreach (var order in orders)
                 {
                     writer.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11}", order.orderNumber,
@@ -88,15 +76,9 @@ namespace FlooringProgram.Data
             }
         }
 
-        public void OverWriteFileWithOrder(List<Order> orders,string date)
+        public void OverWriteFileWithOrder(List<Order> orders, string date)
         {
-            OverWriteFile(orders,date);
+            OverWriteFile(orders, date);
         }
-
-        //private void OverwriteFile(List<Order> LoadOrders()
-        //{
-        //    using (var fileToRead) = File.CreateText(FilePath)
-
-        //}
     }
 }

@@ -48,16 +48,17 @@ namespace FlooringProgram.Workflows
                                       ordertofind.MaterialCost, ordertofind.LaborCost,
                                       ordertofind.Tax, ordertofind.Total);
 
-                    Console.WriteLine("\nPress ENTER to edit... ");
+                    Console.Write("\nPress ENTER to edit... ");
                     Console.ReadLine();
                     Console.WriteLine();
+
                     //Update Customer Name
                     Console.Write("Enter customer name ({0}): ", ordertofind.customerName);
                     string inputname = Console.ReadLine();
                     if (inputname != "")
                         ordertofind.customerName = inputname;
-                    // Update State Name
-                    do
+
+                    do // Update State Name
                     {
                         Console.Write("Enter state name ({0}): ", ordertofind.stateName);
                         string inputstate = Console.ReadLine();
@@ -69,7 +70,6 @@ namespace FlooringProgram.Workflows
                             break;
                         }
                     } while (true);
-
 
                     do // Update Tax Rate
                     {
@@ -87,8 +87,7 @@ namespace FlooringProgram.Workflows
                         }
                     } while (true);
 
-                    // Update Product Type
-                    do
+                    do // Update Product Type
                     {
                         Console.Write("Enter product type ({0}): ", ordertofind.productType);
                         string inputproducttype = Console.ReadLine();
@@ -239,13 +238,12 @@ namespace FlooringProgram.Workflows
                     {
 
                         manager.EditOrder(ordertofind, date, ordernumber);
-                        Console.Write("Order added to the system. Press any key to continue...");
+                        Console.Write("Order has been edited. Press any key to continue...");
                         Console.ReadKey();
-
                     }
                     else
                     {
-                        Console.Write("Order has been cancelled! Press any key to continue...");
+                        Console.Write("Edited changes cancelled. Press any key to continue...");
                         Console.ReadKey();
                     }
                 }
