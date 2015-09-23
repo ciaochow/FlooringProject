@@ -18,14 +18,19 @@ namespace FlooringProgram.Workflows
             var response = manager.DisplayOrders(date);
             if (response.Data.Orders.Count == 0)
             {
-                // do something
+                Console.WriteLine();
+                Console.WriteLine("Sorry! There are no orders at all for that particular date..");
+                Console.Write("Press any key to continue... ");
+                Console.ReadKey();
             }
             else
             {
                 var ordertofind = response.Data.Orders.FirstOrDefault(a => a.orderNumber == ordernumber);
                 if (ordertofind == null)
                 {
-                    // do something
+                    Console.WriteLine();
+                    Console.Write("Order#{0} was not found. Press any key to continue... ", ordernumber);
+                    Console.ReadKey();
                 }
                 else
                 {
@@ -278,6 +283,5 @@ namespace FlooringProgram.Workflows
                 }
             } while (true);
         }
-
     }
 }
