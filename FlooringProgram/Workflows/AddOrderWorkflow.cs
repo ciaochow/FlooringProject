@@ -22,15 +22,15 @@ namespace FlooringProgram.Workflows
                 Console.Clear();
                 string StateName = GetStateName();
                 Console.Clear();
-                decimal TaxRate = GetTaxRate();
+                decimal TaxRate = GetTaxRate(StateName);
                 Console.Clear();
                 string ProductType = GetProductType();
                 Console.Clear();
                 decimal Area = GetArea();
                 Console.Clear();
-                decimal CostPerSquareFoot = GetCostPerSquareFoot();
+                decimal CostPerSquareFoot = GetCostPerSquareFoot(ProductType);
                 Console.Clear();
-                decimal LaborCostPerSquareFoot = GetLaborCostPerSquareFoot();
+                decimal LaborCostPerSquareFoot = GetLaborCostPerSquareFoot(ProductType);
                 Console.Clear();
                 decimal MaterialCost = GetMaterialCost();
                 Console.Clear();
@@ -80,7 +80,7 @@ namespace FlooringProgram.Workflows
                     order.LaborCost = LaborCost;
                     order.Tax = Tax;
                     order.Total = Total;
-                    var response = manager.AddOrder(order,Date);
+                    var response = manager.AddOrder(order, Date);
 
                     Console.Write("Order added to the system. Press any key to continue...");
                     Console.ReadKey();
@@ -92,11 +92,11 @@ namespace FlooringProgram.Workflows
                     Console.ReadKey();
                     break;
                 }
-               
+
 
             } while (end == false);
 
-            
+
         }
 
         private string GetCustomerName()
@@ -118,30 +118,34 @@ namespace FlooringProgram.Workflows
         {
             do
             {
-                Console.Write("Enter state name (ex: OH): ");
+                Console.Write("Enter state name (only OH/PA/MI/IN): ");
                 string input = Console.ReadLine();
-                int num;
-                bool test = int.TryParse(input, out num);
-                if (input.Length == 2 && input != "" && !test)
+                if (input.ToUpper() == "OH" || input.ToUpper() == "PA" ||
+                    input.ToUpper() == "MI" || input.ToUpper() == "IN")
                 {
                     return input;
                 }
             } while (true);
         }
 
-        private decimal GetTaxRate()
+        private decimal GetTaxRate(string statename)
         {
-            do
+            if (statename == "OH")
             {
-                Console.Write("Enter tax rate (ex: 6.75): ");
-                string input = Console.ReadLine();
-                decimal num;
-                bool test = decimal.TryParse(input, out num);
-                if (input != "" && test)
-                {
-                    return num;
-                }
-            } while (true);
+                return 6.25M;
+            }
+            else if (statename == "PA")
+            {
+                return 6.75M;
+            }
+            else if (statename == "MI")
+            {
+                return 5.75M;
+            }
+            else // statename = IN
+            {
+                return 6.00M;
+            }
         }
 
         private string GetDate()
@@ -164,15 +168,15 @@ namespace FlooringProgram.Workflows
         {
             do
             {
-                Console.Write("Enter product type (ex: Wood): ");
+                Console.Write("Enter product type (only carpet/laminate/tile/wood): ");
                 string input = Console.ReadLine();
-                int num;
-                bool test = int.TryParse(input, out num);
-                if (input.Length > 0 && input != "" && !test)
+                if (input.ToUpper() == "CARPET" || input.ToUpper() == "LAMINATE" ||
+                    input.ToUpper() == "TILE" || input.ToUpper() == "WOOD")
                 {
                     return input;
                 }
             } while (true);
+            
         }
 
         private decimal GetArea()
@@ -190,34 +194,46 @@ namespace FlooringProgram.Workflows
             } while (true);
         }
 
-        private decimal GetCostPerSquareFoot()
+        private decimal GetCostPerSquareFoot(string producttype)
         {
-            do
+
+            if ( producttype == "CARPET")
             {
-                Console.Write("Enter Cost per Square Foot (ex: 5.00): ");
-                string input = Console.ReadLine();
-                decimal num;
-                bool test = decimal.TryParse(input, out num);
-                if (input != "" && test)
-                {
-                    return num;
-                }
-            } while (true);
+                return 2.25M;
+            }
+            else if (producttype == "LAMINATE")
+            {
+                return 1.75M;
+            }
+            else if (producttype == "TILE")
+            {
+                return 3.50M;
+            }
+            else // producttype = WOOD
+            {
+                return 5.15M;
+            }
+            
         }
 
-        private decimal GetLaborCostPerSquareFoot()
+        private decimal GetLaborCostPerSquareFoot(string producttype)
         {
-            do
+            if (producttype == "CARPET")
             {
-                Console.Write("Enter Labor Cost per Square Foot (ex: 5.00): ");
-                string input = Console.ReadLine();
-                decimal num;
-                bool test = decimal.TryParse(input, out num);
-                if (input != "" && test)
-                {
-                    return num;
-                }
-            } while (true);
+                return 2.10M;
+            }
+            else if (producttype == "LAMINATE")
+            {
+                return 2.10M;
+            }
+            else if (producttype == "TILE")
+            {
+                return 4.15M;
+            }
+            else // producttype = WOOD
+            {
+                return 4.75M;
+            }
         }
 
         private decimal GetMaterialCost()
@@ -279,6 +295,7 @@ namespace FlooringProgram.Workflows
                 }
             } while (true);
         }
+
 
     }
 }
