@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Workflows\AddOrderWorkflow.cs" />
     <Compile Include="Workflows\DisplayOrderWorkflow.cs" />
+    <Compile Include="Workflows\EditOrderWorkflow.cs" />
     <Compile Include="Workflows\MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

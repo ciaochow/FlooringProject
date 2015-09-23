@@ -87,6 +87,33 @@ namespace FlooringProgram.BLL
 
         }
 
-        
+        public Response<EditOrderReceipt> EditOrder(Order order, string date, int ordernum)
+        {
+            var response = new Response<EditOrderReceipt>();
+            var repo = _repo;
+            var orders = _repo.LoadOrders(date);
+            try
+            {
+                var filtered = orders.Where(a => a.orderNumber != ordernum).ToList();
+                filtered.Add(order);
+                //order.orderNumber = highAccountNum + 1;
+                //orders.Add(order);
+                repo.OverWriteFileWithOrder(filtered, date);
+                response.Success = true;
+                //sponse.Message = "";
+                response.Data = new EditOrderReceipt();
+                response.Data.Date = int.Parse(date);
+                response.Data.Orders = orders;
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+            return response;
+
+        }
+
+
     }
 }

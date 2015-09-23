@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AddOrderReceipt.cs" />
     <Compile Include="DisplayOrderReceipt.cs" />
+    <Compile Include="EditOrderReceipt.cs" />
     <Compile Include="IRepo.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
