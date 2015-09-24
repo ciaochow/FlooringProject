@@ -7,7 +7,7 @@ using FlooringProgram.Models;
 
 namespace FlooringProgram.Data
 {
-    public class TestOrderRepo : IRepo
+    public class TestOrderRepo : IOrderRepo
     {
         private static List<Order> _orders;
 

@@ -8,7 +8,7 @@ using System.IO;
 
 namespace FlooringProgram.Data
 {
-    public class ProdOrderRepo : IRepo
+    public class ProdOrderRepo : IOrderRepo
     {
         private const string FilePath = @"DataFiles\";
 

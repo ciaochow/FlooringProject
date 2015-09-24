@@ -13,7 +13,9 @@ namespace FlooringProgram.BLL
 {
     public class OrderManager
     {
-        private IRepo _repo;
+        private IOrderRepo _repo;
+        private ITaxRepo _taxrepo;
+        private IProductRepo _productrepo;
 
         public OrderManager()
         {
@@ -27,6 +29,8 @@ namespace FlooringProgram.BLL
             {
                 var repo = new ProdOrderRepo();
                 _repo = repo;
+                _taxrepo = new TaxRepo();
+                _productrepo = new ProductRepo();
             }
         }
 
@@ -58,21 +62,31 @@ namespace FlooringProgram.BLL
             return response;
         }
 
-        public Response<AddOrderReceipt> AddOrder(Order order,string date)
+        public Response<AddOrderReceipt> AddOrder(Order order, string date)
         {
             var response = new Response<AddOrderReceipt>();
             var repo = _repo;
             var orders = _repo.LoadOrders(date);
+            var taxes = _taxrepo.LoadTaxRate();
+            var products = _productrepo.LoadProductType();
             try
             {
-                    var highAccountNum = orders.Select(a => a.orderNumber).Max();
-                    order.orderNumber = highAccountNum + 1;
-                    orders.Add(order);
-                    repo.OverWriteFileWithOrder(orders,date);
-                    response.Success = true;
-                    response.Data = new AddOrderReceipt();
-                    response.Data.Date = int.Parse(date);
-                    response.Data.Orders = orders;
+                var highAccountNum = orders.Select(a => a.orderNumber).Max();
+                order.orderNumber = highAccountNum + 1;
+                var taxrate = taxes.First(a => a.StateAbbreviation == order.stateName);
+                order.taxRate = taxrate.TaxRate;
+                var producttype = products.First(a => a.ProductType == order.productType);
+                //order.productType = producttype.ProductType;
+                order.CostPerSquareFoot = producttype.CostPerSquareFoot;
+                order.LaborCostPerSquareFoot = producttype.LaborCostPerSquareFoot;
+                order = SetDerivedOrderInfo(order);
+                orders.Add(order);
+                repo.OverWriteFileWithOrder(orders, date);
+                response.Success = true;
+                response.Data = new AddOrderReceipt();
+                response.Data.Date = int.Parse(date);
+                response.Data.Orders = orders;
+                response.Data.Order = order;
             }
             catch (Exception ex)
             {
@@ -125,6 +139,19 @@ namespace FlooringProgram.BLL
                 response.Message = ex.Message;
             }
             return response;
+        }
+
+        private Order SetDerivedOrderInfo(Order order)
+        {
+            var materialcost = order.CostPerSquareFoot*order.Area;
+            var laborcost = order.LaborCostPerSquareFoot*order.Area;
+            var tax = (materialcost + laborcost)*(order.taxRate/100);
+            var total = materialcost + laborcost + tax;
+            order.MaterialCost = materialcost;
+            order.LaborCost = laborcost;
+            order.Tax = tax;
+            order.Total = total;
+            return order;
         }
     }
 }

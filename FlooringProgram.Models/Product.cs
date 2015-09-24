@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace FlooringProgram.Models
 {
-    public class AddOrderReceipt
+    public class Product
     {
-        public int Date { get; set; }
-        public List<Order> Orders { get; set; }
-        public Order Order { get; set; }
+        public string ProductType;
+        public decimal CostPerSquareFoot;
+        public decimal LaborCostPerSquareFoot;
     }
 }

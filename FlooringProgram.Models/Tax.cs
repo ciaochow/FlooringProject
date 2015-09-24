@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace FlooringProgram.Models
 {
-    public interface IRepo
+    public class Tax
     {
-        List<Order> LoadOrders(string date);
-        void OverWriteFileWithOrder(List<Order> orders, string date);
+        public string StateAbbreviation;
+        public string StateName;
+        public decimal TaxRate;
     }
 }

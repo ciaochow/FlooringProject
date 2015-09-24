@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProdOrderRepo.cs" />
+    <Compile Include="ProductRepo.cs" />
+    <Compile Include="TaxRepo.cs" />
     <Compile Include="TestOrderRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

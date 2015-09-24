@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace FlooringProgram.Models
 {
-    public class AddOrderReceipt
+    public interface IProductRepo
     {
-        public int Date { get; set; }
-        public List<Order> Orders { get; set; }
-        public Order Order { get; set; }
+        List<Product> LoadProductType();
     }
 }
