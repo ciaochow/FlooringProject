@@ -101,8 +101,18 @@ namespace FlooringProgram.BLL
             var response = new Response<EditOrderReceipt>();
             var repo = _repo;
             var orders = _repo.LoadOrders(date);
+            var taxes = _taxrepo.LoadTaxRate();
+            var products = _productrepo.LoadProductType();
+
             try
             {
+                var taxrate = taxes.First(a => a.StateAbbreviation == order.stateName);
+                order.taxRate = taxrate.TaxRate;
+                var producttype = products.First(a => a.ProductType == order.productType);
+                //order.productType = producttype.ProductType;
+                order.CostPerSquareFoot = producttype.CostPerSquareFoot;
+                order.LaborCostPerSquareFoot = producttype.LaborCostPerSquareFoot;
+                order = SetDerivedOrderInfo(order);
                 var filtered = orders.Where(a => a.orderNumber != ordernum).ToList();
                 filtered.Add(order);
                 repo.OverWriteFileWithOrder(filtered, date);
@@ -110,6 +120,7 @@ namespace FlooringProgram.BLL
                 response.Data = new EditOrderReceipt();
                 response.Data.Date = int.Parse(date);
                 response.Data.Orders = orders;
+                response.Data.Order = order;
             }
             catch (Exception ex)
             {

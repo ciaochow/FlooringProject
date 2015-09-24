@@ -12,7 +12,7 @@ namespace FlooringProgram.Workflows
     {
         public void Execute()
         {
-            bool end = false;
+            //bool end = false;
             //do
             //{
             Console.Clear();
@@ -85,7 +85,7 @@ namespace FlooringProgram.Workflows
             {
                 Console.Write("Order added to the system. Press any key to continue...");
                 Console.ReadKey();
-                end = true;
+                //end = true;
             }
             else
             {

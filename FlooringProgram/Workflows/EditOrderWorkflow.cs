@@ -39,8 +39,8 @@ namespace FlooringProgram.Workflows
                     Console.WriteLine("EDIT ORDER SUMMARY");
                     Console.WriteLine("*****************");
                     Console.WriteLine("orderNumber  customerName  stateName  taxRate  productType  Area    CostPerSquareFoot LaborCostPerSquareFoot MaterialCost LaborCost Tax    Total");
-                    Console.WriteLine("{0}             {1}           {2}        {3}      {4}        {5}       {6}                {7}              {8}" +
-                                              "     {9}   {10}  {11}", ordertofind.orderNumber,
+                    Console.WriteLine("{0}             {1}           {2}        {3}      {4}        {5}       {6:c}                {7:c}              {8:c}" +
+                                              "     {9:c}   {10:c}  {11:c}", ordertofind.orderNumber,
                                       ordertofind.customerName, ordertofind.stateName,
                                       ordertofind.taxRate, ordertofind.productType,
                                       ordertofind.Area, ordertofind.CostPerSquareFoot,
@@ -52,175 +52,47 @@ namespace FlooringProgram.Workflows
                     Console.ReadLine();
                     Console.WriteLine();
 
+                    var ordertoedit = new Order();
+
                     //Update Customer Name
-                    Console.Write("Enter customer name ({0}): ", ordertofind.customerName);
-                    string inputname = Console.ReadLine();
-                    if (inputname != "")
-                        ordertofind.customerName = inputname;
-
-                    do // Update State Name
-                    {
-                        Console.Write("Enter state name ({0}): ", ordertofind.stateName);
-                        string inputstate = Console.ReadLine();
-                        if (inputstate == "")
-                            break;
-                        if (inputstate.Length == 2)
+                    
+                    
+                        Console.Write("Enter customer name ({0}): ", ordertofind.customerName);
+                        string inputname = Console.ReadLine();
+                        if (inputname != "")
                         {
-                            ordertofind.stateName = inputstate.ToUpper();
-                            break;
+                            ordertoedit.customerName = inputname;
                         }
-                    } while (true);
-
-                    do // Update Tax Rate
-                    {
-                        Console.Write("Enter tax rate ({0}): ", ordertofind.taxRate);
-                        string inputtaxrate = Console.ReadLine();
-                        decimal num;
-                        bool test = decimal.TryParse(inputtaxrate, out num);
-                        if (test == false && inputtaxrate == "")
-                            break;
-
-                        if (inputtaxrate != "" && test)
+                        if (inputname == "")
                         {
-                            ordertofind.taxRate = num;
-                            break;
+                            ordertoedit.customerName = ordertofind.customerName;
                         }
-                    } while (true);
 
-                    do // Update Product Type
-                    {
-                        Console.Write("Enter product type ({0}): ", ordertofind.productType);
-                        string inputproducttype = Console.ReadLine();
-                        if (inputproducttype != "")
-                        {
-                            ordertofind.productType = inputproducttype;
-                            break;
-                        }
-                        if (inputproducttype == "")
-                            break;
+                    // Update State Name
+                    ordertoedit.stateName = GetStateName(ordertofind);
 
-                    } while (true);
-
-
-                    do // Update Area
+                    // Update Product Type
+                    ordertoedit.productType = GetProductType(ordertofind);
+                    ordertoedit.orderNumber = ordertofind.orderNumber;
+                    // Update Area
+                    do
                     {
                         Console.Write("Enter area ({0}): ", ordertofind.Area);
                         string inputarea = Console.ReadLine();
                         decimal num;
                         bool test = decimal.TryParse(inputarea, out num);
-                        if (test == false && inputarea == "")
+                        if (inputarea == "")
+                        {
+                            ordertoedit.Area = ordertofind.Area;
                             break;
-
+                        }
                         if (inputarea != "" && test)
                         {
-                            ordertofind.Area = num;
+                            ordertoedit.Area = num;
                             break;
                         }
                     } while (true);
 
-                    do // Update CostPerSquareFoot
-                    {
-                        Console.Write("Enter CostPerSquareFoot ({0}): ", ordertofind.CostPerSquareFoot);
-                        string inputcostpersqfoot = Console.ReadLine();
-                        decimal num;
-                        bool test = decimal.TryParse(inputcostpersqfoot, out num);
-                        if (test == false && inputcostpersqfoot == "")
-                            break;
-                        if (inputcostpersqfoot != "" && test)
-                        {
-                            ordertofind.CostPerSquareFoot = num;
-                            break;
-                        }
-                    } while (true);
-
-                    do // Update LaborCostSquareFoot
-                    {
-                        Console.Write("Enter LaborCostPerSquareFoot ({0}): ", ordertofind.LaborCostPerSquareFoot);
-                        string inputlaborcostpersqfoot = Console.ReadLine();
-                        decimal num;
-                        bool test = decimal.TryParse(inputlaborcostpersqfoot, out num);
-                        if (test == false && inputlaborcostpersqfoot == "")
-                            break;
-                        if (inputlaborcostpersqfoot != "" && test)
-                        {
-                            ordertofind.LaborCostPerSquareFoot = num;
-                            break;
-                        }
-                    } while (true);
-
-                    do // Update MaterialCost
-                    {
-                        Console.Write("Enter Material Cost ({0}): ", ordertofind.MaterialCost);
-                        string inputmaterialcost = Console.ReadLine();
-                        decimal num;
-                        bool test = decimal.TryParse(inputmaterialcost, out num);
-                        if (test == false && inputmaterialcost == "")
-                            break;
-                        if (inputmaterialcost != "" && test)
-                        {
-                            ordertofind.MaterialCost = num;
-                            break;
-                        }
-                    } while (true);
-
-                    do // Update LaborCost
-                    {
-                        Console.Write("Enter Labor Cost ({0}): ", ordertofind.LaborCost);
-                        string inputlaborcost = Console.ReadLine();
-                        decimal num;
-                        bool test = decimal.TryParse(inputlaborcost, out num);
-                        if (test == false && inputlaborcost == "")
-                            break;
-                        if (inputlaborcost != "" && test)
-                        {
-                            ordertofind.LaborCost = num;
-                            break;
-                        }
-                    } while (true);
-
-                    do // Update Tax
-                    {
-                        Console.Write("Enter Tax ({0}): ", ordertofind.Tax);
-                        string inputtax = Console.ReadLine();
-                        decimal num;
-                        bool test = decimal.TryParse(inputtax, out num);
-                        if (test == false && inputtax == "")
-                            break;
-                        if (inputtax != "" && test)
-                        {
-                            ordertofind.Tax = num;
-                            break;
-                        }
-                    } while (true);
-
-                    do // Update Total
-                    {
-                        Console.Write("Enter Total ({0}): ", ordertofind.Total);
-                        string inputtotal = Console.ReadLine();
-                        decimal num;
-                        bool test = decimal.TryParse(inputtotal, out num);
-                        if (test == false && inputtotal == "")
-                            break;
-                        if (inputtotal != "" && test)
-                        {
-                            ordertofind.Total = num;
-                            break;
-                        }
-                    } while (true);
-
-                    // Display newly edited order and confirm
-                    Console.Clear();
-                    Console.WriteLine("SUMMARY OF NEWLY EDITED ORDER (YOU MUST CONFIRM TO TAKE EFFECT)");
-                    Console.WriteLine("*****************");
-                    Console.WriteLine("orderNumber  customerName  stateName  taxRate  productType  Area    CostPerSquareFoot LaborCostPerSquareFoot MaterialCost LaborCost Tax    Total");
-                    Console.WriteLine("{0}             {1}           {2}        {3}      {4}        {5}       {6}                {7}              {8}" +
-                                              "     {9}   {10}  {11}", ordertofind.orderNumber,
-                                      ordertofind.customerName, ordertofind.stateName,
-                                      ordertofind.taxRate, ordertofind.productType,
-                                      ordertofind.Area, ordertofind.CostPerSquareFoot,
-                                      ordertofind.LaborCostPerSquareFoot,
-                                      ordertofind.MaterialCost, ordertofind.LaborCost,
-                                      ordertofind.Tax, ordertofind.Total);
                     // confirm (y/n)
                     bool prompt = false;
                     string newgame = "";
@@ -237,12 +109,29 @@ namespace FlooringProgram.Workflows
                     if (newgame.ToUpper() == "Y" || newgame.ToUpper() == "YES")
                     {
 
-                        manager.EditOrder(ordertofind, date, ordernumber);
+                        var response1 = manager.EditOrder(ordertoedit, date, ordernumber); // the order before it's been fully populated.
+                        var editedorder = response1.Data.Order; // the one we get back after we load all data.
+
+                        Console.Clear();
+                        Console.WriteLine("(SUMMARY OF NEWLY EDITED ORDER)");
+                        Console.WriteLine("*****************");
+                        Console.WriteLine("orderNumber  customerName  stateName  taxRate  productType  Area    CostPerSquareFoot LaborCostPerSquareFoot MaterialCost LaborCost Tax    Total");
+                        Console.WriteLine("{0}             {1}           {2}        {3}      {4}        {5}       {6:c}          {7:c}              {8:c}" +
+                                                  "     {9:c}   {10:c}  {11:c}", editedorder.orderNumber,
+                                          editedorder.customerName, editedorder.stateName,
+                                          editedorder.taxRate, editedorder.productType,
+                                          editedorder.Area, editedorder.CostPerSquareFoot,
+                                          editedorder.LaborCostPerSquareFoot,
+                                          editedorder.MaterialCost, editedorder.LaborCost,
+                                          editedorder.Tax, editedorder.Total);
+
+                        Console.WriteLine();
                         Console.Write("Order has been edited. Press any key to continue...");
                         Console.ReadKey();
                     }
-                    else
+                    else // user types no. Revert back to old order information.
                     {
+                        manager.EditOrder(ordertofind, date, ordernumber);
                         Console.Write("Edited changes cancelled. Press any key to continue...");
                         Console.ReadKey();
                     }
@@ -278,6 +167,53 @@ namespace FlooringProgram.Workflows
                 if (parsedinput)
                 {
                     return passThisString;
+                }
+            } while (true);
+        }
+
+        private string GetStateName(Order order)
+        {
+            do
+            {
+                Console.Write("Enter state name (only OH/PA/MI/IN)({0}): ", order.stateName);
+                string input = Console.ReadLine();
+                if (input.ToUpper() == "OH" || input.ToUpper() == "PA" ||
+                    input.ToUpper() == "MI" || input.ToUpper() == "IN")
+                {
+                    return input.ToUpper();
+                }
+                if (input == "")
+                {
+                    return order.stateName;
+                }
+            } while (true);
+        }
+
+        private string GetProductType(Order order)
+        {
+            do
+            {
+                Console.Write("Enter product type (only carpet/laminate/tile/wood)({0}): ", order.productType);
+                string input = Console.ReadLine();
+                if (input.ToUpper() == "CARPET")
+                {
+                    return "Carpet";
+                }
+                if (input.ToUpper() == "LAMINATE")
+                {
+                    return "Laminate";
+                }
+                if (input.ToUpper() == "TILE")
+                {
+                    return "Tile";
+                }
+                if (input.ToUpper() == "WOOD")
+                {
+                    return "Wood";
+                }
+                if (input == "")
+                {
+                    return order.productType;
                 }
             } while (true);
         }

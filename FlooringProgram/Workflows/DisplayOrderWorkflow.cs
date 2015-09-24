@@ -23,7 +23,7 @@ namespace FlooringProgram.Workflows
 
                 foreach (var order in response.Data.Orders)
                 {
-                    Console.WriteLine("{0}             {1}           {2}        {3}      {4}        {5}       {6:c}                {7:c}              {8:c}" +
+                    Console.WriteLine("{0}             {1}           {2}        {3}      {4}        {5}       {6:c}          {7:c}              {8:c}" +
                                       "     {9:c}   {10:c}  {11:c}", order.orderNumber,
                                       order.customerName, order.stateName,
                                       order.taxRate, order.productType,
