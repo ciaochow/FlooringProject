@@ -76,7 +76,6 @@ namespace FlooringProgram.BLL
                 var taxrate = taxes.First(a => a.StateAbbreviation == order.stateName);
                 order.taxRate = taxrate.TaxRate;
                 var producttype = products.First(a => a.ProductType == order.productType);
-                //order.productType = producttype.ProductType;
                 order.CostPerSquareFoot = producttype.CostPerSquareFoot;
                 order.LaborCostPerSquareFoot = producttype.LaborCostPerSquareFoot;
                 order = SetDerivedOrderInfo(order);
@@ -109,7 +108,6 @@ namespace FlooringProgram.BLL
                 var taxrate = taxes.First(a => a.StateAbbreviation == order.stateName);
                 order.taxRate = taxrate.TaxRate;
                 var producttype = products.First(a => a.ProductType == order.productType);
-                //order.productType = producttype.ProductType;
                 order.CostPerSquareFoot = producttype.CostPerSquareFoot;
                 order.LaborCostPerSquareFoot = producttype.LaborCostPerSquareFoot;
                 order = SetDerivedOrderInfo(order);
@@ -154,9 +152,9 @@ namespace FlooringProgram.BLL
 
         private Order SetDerivedOrderInfo(Order order)
         {
-            var materialcost = order.CostPerSquareFoot*order.Area;
-            var laborcost = order.LaborCostPerSquareFoot*order.Area;
-            var tax = (materialcost + laborcost)*(order.taxRate/100);
+            var materialcost = order.CostPerSquareFoot * order.Area;
+            var laborcost = order.LaborCostPerSquareFoot * order.Area;
+            var tax = (materialcost + laborcost) * (order.taxRate / 100);
             var total = materialcost + laborcost + tax;
             order.MaterialCost = materialcost;
             order.LaborCost = laborcost;

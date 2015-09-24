@@ -14,15 +14,16 @@ namespace FlooringProgram
             do
             {
                 Console.Clear();
-                Console.WriteLine("**********************************");
-                Console.WriteLine("*      Flooring Program          *");
-                Console.WriteLine("*                                *");
-                Console.WriteLine("* 1. Display Orders              *");
-                Console.WriteLine("* 2. Add an Order                *");
-                Console.WriteLine("* 3. Edit an Order               *");
-                Console.WriteLine("* 4. Remove an Order             *");
-                Console.WriteLine("* 5. Quit                        *");
-                Console.WriteLine("**********************************\n");
+                Console.WriteLine("******************************");
+                Console.WriteLine("*      Flooring Program      *");
+                Console.WriteLine("*                            *");
+                Console.WriteLine("*    1. Display Orders       *");
+                Console.WriteLine("*    2. Add an Order         *");
+                Console.WriteLine("*    3. Edit an Order        *");
+                Console.WriteLine("*    4. Remove an Order      *");
+                Console.WriteLine("*    5. Quit                 *");
+                Console.WriteLine("*                            *");
+                Console.WriteLine("******************************\n");
 
                 Console.Write("Enter choice: ");
                 string input = Console.ReadLine();
@@ -55,9 +56,6 @@ namespace FlooringProgram
                     RemoveOrder.Execute();
                     break;
             }
-
         }
     }
-
-
 }

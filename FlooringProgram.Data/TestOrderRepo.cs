@@ -36,8 +36,6 @@ namespace FlooringProgram.Data
 
         public List<Order> LoadOrders(string date)
         {
-            //List<Order> Orders = new List<Order>();
-            //_orders = Orders;
             return _orders;
         }
 

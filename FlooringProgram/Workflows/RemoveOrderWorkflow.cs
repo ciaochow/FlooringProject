@@ -39,8 +39,8 @@ namespace FlooringProgram.Workflows
                     Console.WriteLine("DELETE ORDER SUMMARY");
                     Console.WriteLine("*****************");
                     Console.WriteLine("orderNumber  customerName  stateName  taxRate  productType  Area    CostPerSquareFoot LaborCostPerSquareFoot MaterialCost LaborCost Tax    Total");
-                    Console.WriteLine("{0}             {1}           {2}        {3}      {4}        {5}       {6}                {7}              {8}" +
-                                              "     {9}   {10}  {11}", ordertofind.orderNumber,
+                    Console.WriteLine("{0}             {1}           {2}        {3}      {4}        {5}       {6:c}           {7:c}              {8:c}" +
+                                              "     {9:c}   {10:c}  {11:c}", ordertofind.orderNumber,
                                       ordertofind.customerName, ordertofind.stateName,
                                       ordertofind.taxRate, ordertofind.productType,
                                       ordertofind.Area, ordertofind.CostPerSquareFoot,

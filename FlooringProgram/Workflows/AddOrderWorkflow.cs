@@ -12,9 +12,6 @@ namespace FlooringProgram.Workflows
     {
         public void Execute()
         {
-            //bool end = false;
-            //do
-            //{
             Console.Clear();
             string Date = GetDate();
             Console.Clear();
@@ -22,38 +19,17 @@ namespace FlooringProgram.Workflows
             Console.Clear();
             string StateName = GetStateName();
             Console.Clear();
-            //decimal TaxRate = GetTaxRate(StateName);
-            //Console.Clear();
             string ProductType = GetProductType();
             Console.Clear();
             decimal Area = GetArea();
             Console.Clear();
-            //decimal CostPerSquareFoot = GetCostPerSquareFoot(ProductType);
-            //Console.Clear();
-            //decimal LaborCostPerSquareFoot = GetLaborCostPerSquareFoot(ProductType);
-            //Console.Clear();
-            //decimal MaterialCost = GetMaterialCost();
-            //Console.Clear();
-            //decimal LaborCost = GetLaborCost();
-            //Console.Clear();
-            //decimal Tax = GetTax();
-            //Console.Clear();
-            //decimal Total = GetTotal();
-            //Console.Clear();
-
             var manager = new OrderManager();
             var order = new Order();
             order.customerName = CustomerName;
             order.stateName = StateName;
-            //order.taxRate = TaxRate;
             order.productType = ProductType;
             order.Area = Area;
-            //order.CostPerSquareFoot = CostPerSquareFoot;
-            //order.LaborCostPerSquareFoot = LaborCostPerSquareFoot;
-            //order.MaterialCost = MaterialCost;
-            //order.LaborCost = LaborCost;
-            //order.Tax = Tax;
-            //order.Total = Total;
+
             var response = manager.AddOrder(order, Date);
             var neworder = response.Data.Order;
 
@@ -68,6 +44,7 @@ namespace FlooringProgram.Workflows
                                       neworder.LaborCostPerSquareFoot,
                                       neworder.MaterialCost, neworder.LaborCost,
                                       neworder.Tax, neworder.Total);
+            Console.WriteLine();
 
             bool prompt = false;
             string newgame = "";
@@ -85,7 +62,6 @@ namespace FlooringProgram.Workflows
             {
                 Console.Write("Order added to the system. Press any key to continue...");
                 Console.ReadKey();
-                //end = true;
             }
             else
             {
@@ -94,8 +70,6 @@ namespace FlooringProgram.Workflows
                 Console.Write("Order has been cancelled! Press any key to continue...");
                 Console.ReadKey();
             }
-
-            //} while (end == false);
         }
 
         private string GetCustomerName()
@@ -126,26 +100,6 @@ namespace FlooringProgram.Workflows
                 }
             } while (true);
         }
-
-        //private decimal GetTaxRate(string statename)
-        //{
-        //    if (statename == "OH")
-        //    {
-        //        return 6.25M;
-        //    }
-        //    else if (statename == "PA")
-        //    {
-        //        return 6.75M;
-        //    }
-        //    else if (statename == "MI")
-        //    {
-        //        return 5.75M;
-        //    }
-        //    else // statename = IN
-        //    {
-        //        return 6.00M;
-        //    }
-        //}
 
         private string GetDate()
         {
@@ -203,109 +157,5 @@ namespace FlooringProgram.Workflows
                 }
             } while (true);
         }
-
-        //private decimal GetCostPerSquareFoot(string producttype)
-        //{
-
-        //    if ( producttype == "CARPET")
-        //    {
-        //        return 2.25M;
-        //    }
-        //    else if (producttype == "LAMINATE")
-        //    {
-        //        return 1.75M;
-        //    }
-        //    else if (producttype == "TILE")
-        //    {
-        //        return 3.50M;
-        //    }
-        //    else // producttype = WOOD
-        //    {
-        //        return 5.15M;
-        //    }
-
-        //}
-
-        //private decimal GetLaborCostPerSquareFoot(string producttype)
-        //{
-        //    if (producttype == "CARPET")
-        //    {
-        //        return 2.10M;
-        //    }
-        //    else if (producttype == "LAMINATE")
-        //    {
-        //        return 2.10M;
-        //    }
-        //    else if (producttype == "TILE")
-        //    {
-        //        return 4.15M;
-        //    }
-        //    else // producttype = WOOD
-        //    {
-        //        return 4.75M;
-        //    }
-        //}
-
-        //private decimal GetMaterialCost()
-        //{
-        //    do
-        //    {
-        //        Console.Write("Enter material cost (ex: 5.00): ");
-        //        string input = Console.ReadLine();
-        //        decimal num;
-        //        bool test = decimal.TryParse(input, out num);
-        //        if (input != "" && test)
-        //        {
-        //            return num;
-        //        }
-        //    } while (true);
-        //}
-
-        //private decimal GetLaborCost()
-        //{
-        //    do
-        //    {
-        //        Console.Write("Enter labor cost (ex: 5.00): ");
-        //        string input = Console.ReadLine();
-        //        decimal num;
-        //        bool test = decimal.TryParse(input, out num);
-        //        if (input != "" && test)
-        //        {
-        //            return num;
-        //        }
-        //    } while (true);
-        //}
-
-        //private decimal GetTax()
-        //{
-        //    do
-        //    {
-        //        Console.Write("Enter tax (ex: 5.00): ");
-        //        string input = Console.ReadLine();
-        //        decimal num;
-        //        bool test = decimal.TryParse(input, out num);
-        //        if (input != "" && test)
-        //        {
-        //            return num;
-        //        }
-        //    } while (true);
-        //}
-
-        //private decimal GetTotal()
-        //{
-        //    do
-        //    {
-        //        Console.Write("Enter total cost (ex: 500.00): ");
-        //        string input = Console.ReadLine();
-        //        decimal num;
-        //        bool test = decimal.TryParse(input, out num);
-        //        if (input != "" && test)
-        //        {
-        //            return num;
-        //        }
-        //    } while (true);
-        //}
-
-
     }
 }

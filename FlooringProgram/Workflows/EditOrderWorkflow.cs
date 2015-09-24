@@ -48,6 +48,7 @@ namespace FlooringProgram.Workflows
                                       ordertofind.MaterialCost, ordertofind.LaborCost,
                                       ordertofind.Tax, ordertofind.Total);
 
+                    Console.WriteLine();
                     Console.Write("\nPress ENTER to edit... ");
                     Console.ReadLine();
                     Console.WriteLine();
@@ -55,18 +56,16 @@ namespace FlooringProgram.Workflows
                     var ordertoedit = new Order();
 
                     //Update Customer Name
-                    
-                    
-                        Console.Write("Enter customer name ({0}): ", ordertofind.customerName);
-                        string inputname = Console.ReadLine();
-                        if (inputname != "")
-                        {
-                            ordertoedit.customerName = inputname;
-                        }
-                        if (inputname == "")
-                        {
-                            ordertoedit.customerName = ordertofind.customerName;
-                        }
+                    Console.Write("Enter customer name ({0}): ", ordertofind.customerName);
+                    string inputname = Console.ReadLine();
+                    if (inputname != "")
+                    {
+                        ordertoedit.customerName = inputname;
+                    }
+                    if (inputname == "")
+                    {
+                        ordertoedit.customerName = ordertofind.customerName;
+                    }
 
                     // Update State Name
                     ordertoedit.stateName = GetStateName(ordertofind);

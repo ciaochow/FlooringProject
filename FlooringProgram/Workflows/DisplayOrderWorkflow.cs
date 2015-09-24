@@ -31,19 +31,7 @@ namespace FlooringProgram.Workflows
                                       order.LaborCostPerSquareFoot,
                                       order.MaterialCost, order.LaborCost,
                                       order.Tax, order.Total);
-                    //Console.WriteLine(order.orderNumber);
-                    //Console.WriteLine(order.customerName);
-                    //Console.WriteLine(order.stateName);
-                    //Console.WriteLine(order.taxRate);
-                    //Console.WriteLine(order.productType);
-                    //Console.WriteLine(order.Area);
-                    //Console.WriteLine(order.CostPerSquareFoot);
-                    //Console.WriteLine(order.LaborCostPerSquareFoot);
-                    //Console.WriteLine(order.MaterialCost);
-                    //Console.WriteLine(order.LaborCost);
-                    //Console.WriteLine(order.Tax);
-                    //Console.WriteLine(order.Total);
-                    
+
                 }
                 Console.Write("\nPress any key to continue... ");
                 Console.ReadKey();
@@ -55,7 +43,7 @@ namespace FlooringProgram.Workflows
                 Console.Write("\nPress any key to continue... ");
                 Console.ReadKey();
             }
-          
+
         }
 
         private string GetDate()

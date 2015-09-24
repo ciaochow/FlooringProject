@@ -16,7 +16,6 @@ namespace FlooringProgram.Data
         {
 
             List<Tax> Taxes = new List<Tax>();
-
             if (File.Exists(FilePath))
             {
                 var reader = File.ReadAllLines(FilePath);
