@@ -18,19 +18,31 @@ namespace FlooringProgram.Workflows
             if (response.Success)
             {
                 Console.Clear();
-                Console.WriteLine(
-                    "orderNumber  customerName  stateName  taxRate  productType  Area    CostPerSquareFoot LaborCostPerSquareFoot MaterialCost LaborCost Tax    Total");
+                Console.WriteLine("orderNumber  customerName  stateName  taxRate  productType  Area    CostPerSquareFoot LaborCostPerSquareFoot MaterialCost LaborCost Tax   Total");
 
+                const string format = "{0,-10} {1,11} {2,6} {3,12} {4,14} {5,8:n2} {6,5} {7,17} {8,24} {9,12} {10,8:n2} {11,8:n2}";
+                
                 foreach (var order in response.Data.Orders)
                 {
-                    Console.WriteLine("{0}             {1}           {2}        {3}      {4}        {5}       {6:c}          {7:c}              {8:c}" +
-                                      "     {9:c}   {10:c}  {11:c}", order.orderNumber,
-                                      order.customerName, order.stateName,
-                                      order.taxRate, order.productType,
-                                      order.Area, order.CostPerSquareFoot,
-                                      order.LaborCostPerSquareFoot,
-                                      order.MaterialCost, order.LaborCost,
-                                      order.Tax, order.Total);
+                    string line1 = string.Format(format, order.orderNumber,
+                        order.customerName, order.stateName,
+                        order.taxRate, order.productType,
+                        order.Area, order.CostPerSquareFoot,
+                        order.LaborCostPerSquareFoot,
+                        order.MaterialCost, order.LaborCost,
+                        order.Tax, order.Total);
+
+                    Console.WriteLine(line1);
+
+
+                    //Console.WriteLine("{0}             {1}           {2}        {3}      {4}        {5}       {6:c}          {7:c}              {8:c}" +
+                    //                  "     {9:c}   {10:c}  {11:c}", order.orderNumber,
+                    //                  order.customerName, order.stateName,
+                    //                  order.taxRate, order.productType,
+                    //                  order.Area, order.CostPerSquareFoot,
+                    //                  order.LaborCostPerSquareFoot,
+                    //                  order.MaterialCost, order.LaborCost,
+                    //                  order.Tax, order.Total);
 
                 }
                 Console.Write("\nPress any key to continue... ");
