@@ -16,10 +16,10 @@ namespace FlooringProgram.Workflows
             var ordernumber = GetOrderNumber();
             var manager = new OrderManager();
             var response = manager.DisplayOrders(date);
-            if (response.Data.Orders.Count == 0)
+            if (response.Data == null || response.Data.Orders.Count == 0)
             {
                 Console.WriteLine();
-                Console.WriteLine("Sorry! There are no orders at all to delete...");
+                Console.WriteLine("Sorry! There are no orders to delete from that date...");
                 Console.Write("Press any key to continue... ");
                 Console.ReadKey();
             }

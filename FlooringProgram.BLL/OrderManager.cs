@@ -65,13 +65,18 @@ namespace FlooringProgram.BLL
         public Response<AddOrderReceipt> AddOrder(Order order, string date)
         {
             var response = new Response<AddOrderReceipt>();
+            response.Data = new AddOrderReceipt();
             var repo = _repo;
             var orders = _repo.LoadOrders(date);
             var taxes = _taxrepo.LoadTaxRate();
             var products = _productrepo.LoadProductType();
             try
             {
-                var highAccountNum = orders.Select(a => a.orderNumber).Max();
+                var highAccountNum = 0;
+                if (orders.Count > 0)
+                {
+                    highAccountNum = orders.Select(a => a.orderNumber).Max();
+                }
                 order.orderNumber = highAccountNum + 1;
                 var taxrate = taxes.First(a => a.StateAbbreviation == order.stateName);
                 order.taxRate = taxrate.TaxRate;
@@ -131,6 +136,7 @@ namespace FlooringProgram.BLL
         public Response<RemoveOrderReceipt> RemoveOrder(Order order, string date, int ordernum)
         {
             var response = new Response<RemoveOrderReceipt>();
+            //response.Data = new RemoveOrderReceipt;
             var repo = _repo;
             var orders = _repo.LoadOrders(date);
             try

@@ -31,6 +31,10 @@ namespace FlooringProgram.Workflows
             order.Area = Area;
 
             var response = manager.AddOrder(order, Date);
+            if(response.Data.Orders == null || response.Data.Orders.Count < 1 )
+            {
+                Console.WriteLine("Blah...");
+            }
             var neworder = response.Data.Order;
 
             Console.WriteLine("NEW ORDER SUMMARY");
@@ -65,8 +69,8 @@ namespace FlooringProgram.Workflows
             }
             else
             {
-                var date = response.Data.Date.ToString();
-                manager.RemoveOrder(neworder, date, neworder.orderNumber);
+                
+                manager.RemoveOrder(neworder, Date, neworder.orderNumber);
                 Console.Write("Order has been cancelled! Press any key to continue...");
                 Console.ReadKey();
             }

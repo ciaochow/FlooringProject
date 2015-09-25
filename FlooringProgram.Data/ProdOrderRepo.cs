@@ -43,10 +43,10 @@ namespace FlooringProgram.Data
             }
             else
             {
-                var emptyorder = new Order();
-                Orders.Add(emptyorder);
-                Console.Write("There are no orders with that date.");
-                Console.ReadKey();
+                //Orders.Add(new Order());
+                //OverWriteFile(Orders,date);
+                //.Write("There are no orders with that date.");
+                //Console.ReadKey();
             }
             return Orders;
         }
@@ -55,23 +55,29 @@ namespace FlooringProgram.Data
         {
             string filename = "Orders_" + date + ".txt";
             var fileToRead = FilePath + filename;
-            using (var writer = File.CreateText(fileToRead))
+            if (File.Exists(fileToRead))
             {
-                writer.WriteLine("OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
-                foreach (var order in orders)
+                File.Delete(fileToRead);
+                // deletefile
+                //then create new file and write.
+                using (var writer = File.CreateText(fileToRead))
                 {
-                    writer.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11}", order.orderNumber,
-                    order.customerName,
-                    order.stateName,
-                    order.taxRate,
-                    order.productType,
-                    order.Area,
-                    order.CostPerSquareFoot,
-                    order.LaborCostPerSquareFoot,
-                    order.MaterialCost,
-                    order.LaborCost,
-                    order.Tax,
-                    order.Total);
+                    writer.WriteLine("OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
+                    foreach (var order in orders)
+                    {
+                        writer.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11}", order.orderNumber,
+                        order.customerName,
+                        order.stateName,
+                        order.taxRate,
+                        order.productType,
+                        order.Area,
+                        order.CostPerSquareFoot,
+                        order.LaborCostPerSquareFoot,
+                        order.MaterialCost,
+                        order.LaborCost,
+                        order.Tax,
+                        order.Total);
+                    }
                 }
             }
         }
