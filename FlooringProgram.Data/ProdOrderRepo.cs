@@ -43,9 +43,7 @@ namespace FlooringProgram.Data
             }
             else
             {
-                //Orders.Add(new Order());
-                //OverWriteFile(Orders,date);
-                //.Write("There are no orders with that date.");
+
                 //Console.ReadKey();
             }
             return Orders;
