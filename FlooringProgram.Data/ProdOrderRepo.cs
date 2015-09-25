@@ -43,10 +43,11 @@ namespace FlooringProgram.Data
             }
             else
             {
-                var emptyorder = new Order();
-                Orders.Add(emptyorder);
-                Console.Write("There are no orders with that date.");
-                Console.ReadKey();
+                
+                //var emptyorder = new Order();
+                //Orders.Add(emptyorder);
+                //Console.Write("There are no orders with that date.");
+                //Console.ReadKey();
             }
             return Orders;
         }
