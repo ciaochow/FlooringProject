@@ -58,6 +58,7 @@ namespace FlooringProgram.Data
             if (File.Exists(fileToRead))
             {
                 File.Delete(fileToRead);
+            }
                 // deletefile
                 //then create new file and write.
                 using (var writer = File.CreateText(fileToRead))
@@ -80,7 +81,7 @@ namespace FlooringProgram.Data
                     }
                 }
             }
-        }
+        
 
         public void OverWriteFileWithOrder(List<Order> orders, string date)
         {
