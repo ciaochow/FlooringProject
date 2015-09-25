@@ -31,19 +31,15 @@ namespace FlooringProgram.Workflows
             order.Area = Area;
 
             var response = manager.AddOrder(order, Date);
-            if(response.Data.Orders == null || response.Data.Orders.Count < 1 )
+            if (response.Data.Orders == null || response.Data.Orders.Count < 1)
             {
                 Console.WriteLine("Blah...");
             }
             var neworder = response.Data.Order;
-
+            Console.WriteLine();
             Console.WriteLine("NEW ORDER SUMMARY");
             Console.WriteLine("*****************");
-            //Console.WriteLine("orderNumber  customerName  stateName  taxRate  productType  Area    CostPerSquareFoot LaborCostPerSquareFoot MaterialCost LaborCost Tax    Total");
-
             Console.WriteLine("orderNumber  customerName  stateName  taxRate  productType  Area    CostPerSquareFoot LaborCostPerSquareFoot MaterialCost LaborCost Tax    Total");
-
-            // original here: const string formataddorder = "{0,1} {1,6} {2,6} {3,6} {4,9} {5,6} {6,5} {7,6} {8,6} {9,6} {10,8} {11,6} ";
             const string formataddorder = "{0,1} {1,15} {2,11} {3,12} {4,10} {5,8:n2} {6,9} {7,17} {8,24} {9,11} {10,8:n2} {11,7:n2}";
             string line1 = string.Format(formataddorder, "#", neworder.customerName, neworder.stateName,
                                       neworder.taxRate, neworder.productType,
@@ -51,17 +47,8 @@ namespace FlooringProgram.Workflows
                                       neworder.LaborCostPerSquareFoot,
                                       neworder.MaterialCost, neworder.LaborCost,
                                       neworder.Tax, neworder.Total);
+
             Console.WriteLine(line1);
-
-
-            //Console.WriteLine("{0}             {1}           {2}        {3}      {4}        {5}       {6:c}                {7:c}              {8:c}" +
-            //                          "     {9:c}   {10:c}  {11:c}", "#",
-            //                          neworder.customerName, neworder.stateName,
-            //                          neworder.taxRate, neworder.productType,
-            //                          neworder.Area, neworder.CostPerSquareFoot,
-            //                          neworder.LaborCostPerSquareFoot,
-            //                          neworder.MaterialCost, neworder.LaborCost,
-            //                          neworder.Tax, neworder.Total);
             Console.WriteLine();
 
             bool prompt = false;
@@ -83,7 +70,7 @@ namespace FlooringProgram.Workflows
             }
             else
             {
-                
+
                 manager.RemoveOrder(neworder, Date, neworder.orderNumber);
                 Console.Write("Order has been cancelled! Press any key to continue...");
                 Console.ReadKey();
@@ -128,7 +115,7 @@ namespace FlooringProgram.Workflows
                 int num;
                 var passThisString = input;
                 bool parsedinput = int.TryParse(input, out num);
-                if (parsedinput)
+                if (parsedinput && input.Length == 8)
                 {
                     return passThisString;
                 }

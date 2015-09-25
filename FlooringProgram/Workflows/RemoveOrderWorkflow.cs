@@ -39,14 +39,18 @@ namespace FlooringProgram.Workflows
                     Console.WriteLine("DELETE ORDER SUMMARY");
                     Console.WriteLine("*****************");
                     Console.WriteLine("orderNumber  customerName  stateName  taxRate  productType  Area    CostPerSquareFoot LaborCostPerSquareFoot MaterialCost LaborCost Tax    Total");
-                    Console.WriteLine("{0}             {1}           {2}        {3}      {4}        {5}       {6:c}           {7:c}              {8:c}" +
-                                              "     {9:c}   {10:c}  {11:c}", ordertofind.orderNumber,
-                                      ordertofind.customerName, ordertofind.stateName,
-                                      ordertofind.taxRate, ordertofind.productType,
-                                      ordertofind.Area, ordertofind.CostPerSquareFoot,
-                                      ordertofind.LaborCostPerSquareFoot,
-                                      ordertofind.MaterialCost, ordertofind.LaborCost,
-                                      ordertofind.Tax, ordertofind.Total);
+
+                    const string formatremove = "{0,-10} {1,11} {2,6} {3,12} {4,14} {5,8:n2} {6,5:n2} {7,17:n2} {8,24:n2} {9,12:n2} {10,8:n2} {11,9:n2}";
+                    string line1 = string.Format(formatremove, ordertofind.orderNumber,
+                        ordertofind.customerName, ordertofind.stateName,
+                        ordertofind.taxRate, ordertofind.productType,
+                        ordertofind.Area, ordertofind.CostPerSquareFoot,
+                        ordertofind.LaborCostPerSquareFoot,
+                        ordertofind.MaterialCost, ordertofind.LaborCost,
+                        ordertofind.Tax, ordertofind.Total);
+
+                    Console.WriteLine(line1);
+                    Console.WriteLine();
 
                     // Delete order (y/n)
                     bool prompt = false;
@@ -84,7 +88,6 @@ namespace FlooringProgram.Workflows
                 Console.Write("Enter order number(Ex: 1): ");
                 string input = Console.ReadLine();
                 int num;
-                var passThisString = input;
                 bool parsedinput = int.TryParse(input, out num);
                 if (parsedinput)
                 {
@@ -102,7 +105,7 @@ namespace FlooringProgram.Workflows
                 int num;
                 var passThisString = input;
                 bool parsedinput = int.TryParse(input, out num);
-                if (parsedinput)
+                if (parsedinput && input.Length == 8)
                 {
                     return passThisString;
                 }

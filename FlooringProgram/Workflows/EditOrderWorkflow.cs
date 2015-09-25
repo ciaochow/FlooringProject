@@ -38,16 +38,16 @@ namespace FlooringProgram.Workflows
                     Console.Clear();
                     Console.WriteLine("EDIT ORDER SUMMARY");
                     Console.WriteLine("*****************");
-                    Console.WriteLine("orderNumber  customerName  stateName  taxRate  productType  Area    CostPerSquareFoot LaborCostPerSquareFoot MaterialCost LaborCost Tax    Total");
-                    Console.WriteLine("{0}             {1}           {2}        {3}      {4}        {5}       {6:c}                {7:c}              {8:c}" +
-                                              "     {9:c}   {10:c}  {11:c}", ordertofind.orderNumber,
-                                      ordertofind.customerName, ordertofind.stateName,
-                                      ordertofind.taxRate, ordertofind.productType,
-                                      ordertofind.Area, ordertofind.CostPerSquareFoot,
-                                      ordertofind.LaborCostPerSquareFoot,
-                                      ordertofind.MaterialCost, ordertofind.LaborCost,
-                                      ordertofind.Tax, ordertofind.Total);
+                    Console.WriteLine("orderNumber  customerName  stateName  taxRate  productType  Area    CostPerSquareFoot LaborCostPerSquareFoot MaterialCost LaborCost Tax   Total");
+                    const string formatordertofind = "{0,-10} {1,11} {2,6} {3,12} {4,14} {5,8:n2} {6,5:n2} {7,17:n2} {8,24:n2} {9,12:n2} {10,8:n2} {11,7:n2}";
+                    string line2 = string.Format(formatordertofind, ordertofind.orderNumber, ordertofind.customerName, ordertofind.stateName,
+                        ordertofind.taxRate, ordertofind.productType,
+                        ordertofind.Area, ordertofind.CostPerSquareFoot,
+                        ordertofind.LaborCostPerSquareFoot,
+                        ordertofind.MaterialCost, ordertofind.LaborCost,
+                        ordertofind.Tax, ordertofind.Total);
 
+                    Console.WriteLine(line2);
                     Console.WriteLine();
                     Console.Write("\nPress ENTER to edit... ");
                     Console.ReadLine();
@@ -114,16 +114,16 @@ namespace FlooringProgram.Workflows
                         Console.Clear();
                         Console.WriteLine("(SUMMARY OF NEWLY EDITED ORDER)");
                         Console.WriteLine("*****************");
-                        Console.WriteLine("orderNumber  customerName  stateName  taxRate  productType  Area    CostPerSquareFoot LaborCostPerSquareFoot MaterialCost LaborCost Tax    Total");
-                        Console.WriteLine("{0}             {1}           {2}        {3}      {4}        {5}       {6:c}          {7:c}              {8:c}" +
-                                                  "     {9:c}   {10:c}  {11:c}", editedorder.orderNumber,
-                                          editedorder.customerName, editedorder.stateName,
-                                          editedorder.taxRate, editedorder.productType,
-                                          editedorder.Area, editedorder.CostPerSquareFoot,
-                                          editedorder.LaborCostPerSquareFoot,
-                                          editedorder.MaterialCost, editedorder.LaborCost,
-                                          editedorder.Tax, editedorder.Total);
-
+                        Console.WriteLine("orderNumber  customerName  stateName  taxRate  productType  Area    CostPerSquareFoot LaborCostPerSquareFoot MaterialCost LaborCost Tax   Total");
+                        const string formateditorder = "{0,1} {1,19} {2,11} {3,12} {4,10} {5,8:n2} {6,9} {7,17} {8,24} {9,11} {10,8:n2} {11,7:n2}";
+                        string line1 = string.Format(formateditorder, editedorder.orderNumber,
+                            editedorder.customerName, editedorder.stateName,
+                            editedorder.taxRate, editedorder.productType,
+                            editedorder.Area, editedorder.CostPerSquareFoot,
+                            editedorder.LaborCostPerSquareFoot,
+                            editedorder.MaterialCost, editedorder.LaborCost,
+                            editedorder.Tax, editedorder.Total);
+                        Console.WriteLine(line1);
                         Console.WriteLine();
                         Console.Write("Order has been edited. Press any key to continue...");
                         Console.ReadKey();
@@ -163,7 +163,7 @@ namespace FlooringProgram.Workflows
                 int num;
                 var passThisString = input;
                 bool parsedinput = int.TryParse(input, out num);
-                if (parsedinput)
+                if (parsedinput && input.Length == 8)
                 {
                     return passThisString;
                 }
