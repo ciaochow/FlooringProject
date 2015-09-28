@@ -109,6 +109,12 @@ namespace FlooringProgram.Workflows
                 {
                     return passThisString;
                 }
+                DateTime numcheck;
+                bool parseddatetime = DateTime.TryParse(input, out numcheck);
+                if (parseddatetime)
+                {
+                    return numcheck.ToString("MMddyyyy");
+                }
             } while (true);
         }
     }

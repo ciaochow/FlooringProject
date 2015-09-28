@@ -55,6 +55,9 @@ namespace FlooringProgram
                     var RemoveOrder = new RemoveOrderWorkflow();
                     RemoveOrder.Execute();
                     break;
+                case "5":
+                    System.Environment.Exit(1);
+                    break;
             }
         }
     }
