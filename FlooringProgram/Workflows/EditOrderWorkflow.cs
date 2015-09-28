@@ -56,8 +56,13 @@ namespace FlooringProgram.Workflows
                     var ordertoedit = new Order();
 
                     //Update Customer Name
-                    Console.Write("Enter customer name ({0}): ", ordertofind.customerName);
-                    string inputname = Console.ReadLine();
+                    string inputname;
+                    do
+                    {
+                        Console.Write("Enter customer name ({0}): ", ordertofind.customerName);
+                        inputname = Console.ReadLine();
+                    } while (inputname.Contains(",") || inputname.Contains("."));
+                    
                     if (inputname != "")
                     {
                         ordertoedit.customerName = inputname;
@@ -76,7 +81,7 @@ namespace FlooringProgram.Workflows
                     // Update Area
                     do
                     {
-                        Console.Write("Enter area ({0}): ", ordertofind.Area);
+                        Console.Write("Enter area greater than zero ({0}): ", ordertofind.Area);
                         string inputarea = Console.ReadLine();
                         decimal num;
                         bool test = decimal.TryParse(inputarea, out num);
@@ -85,7 +90,7 @@ namespace FlooringProgram.Workflows
                             ordertoedit.Area = ordertofind.Area;
                             break;
                         }
-                        if (inputarea != "" && test)
+                        if (inputarea != "" && test && decimal.Parse(inputarea) > 0)
                         {
                             ordertoedit.Area = num;
                             break;

@@ -81,11 +81,11 @@ namespace FlooringProgram.Workflows
         {
             do
             {
-                Console.Write("Enter customer name: ");
+                Console.Write("Enter customer name (',' or '.' not allowed): ");
                 string input = Console.ReadLine();
                 int num;
                 bool test = int.TryParse(input, out num);
-                if (input.Length > 0 && input != "" && !test)
+                if (input.Length > 0 && input != "" && !test && !input.Contains(",") && !input.Contains("."))
                 {
                     return input;
                 }
@@ -158,11 +158,11 @@ namespace FlooringProgram.Workflows
         {
             do
             {
-                Console.Write("Enter area (ex: 10.00): ");
+                Console.Write("Enter area greater than zero (ex: 10.00): ");
                 string input = Console.ReadLine();
                 decimal num;
                 bool test = decimal.TryParse(input, out num);
-                if (input != "" && test)
+                if (input != "" && test && decimal.Parse(input) > 0)
                 {
                     return num;
                 }
