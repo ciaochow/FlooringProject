@@ -27,7 +27,7 @@ namespace FlooringProgram
 
                 Console.Write("Enter choice: ");
                 string input = Console.ReadLine();
-                if (input.Substring(0, 1).ToUpper() == "Q")
+                if (!string.IsNullOrEmpty(input) && input.Substring(0, 1).ToUpper() == "Q")
                 {
                     break;
                 }
